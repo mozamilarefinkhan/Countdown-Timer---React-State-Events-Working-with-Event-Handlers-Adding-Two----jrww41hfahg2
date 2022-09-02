@@ -1,6 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
 import '../styles/App.css';
-
 const App = () => {
   const [time, setTime] = useState("")
   const addTime = (e)=>{
@@ -21,7 +20,6 @@ const App = () => {
     return()=>clearInterval(interval)
   })
   // write your code here 
-
   return (
     <div className="wrapper">
       <div id="whole-center">
@@ -29,10 +27,8 @@ const App = () => {
           Reverse countdown for<input id="timeCount" onKeyDown={addTime} /> sec.
         </h1>
       </div>
-      <div id="current-time">{setTime}</div>
+      <div id="current-time">{time}</div>  
     </div>
   )
 }
-
-
 export default App;
