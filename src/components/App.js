@@ -29,7 +29,7 @@ const App = () => {
           Reverse countdown for<input id="timeCount" onKeyDown={addTime} /> sec.
         </h1>
       </div>
-      <div id="current-time">{time}</div>
+      <div id="current-time">{setTime}</div>
     </div>
   )
 }
