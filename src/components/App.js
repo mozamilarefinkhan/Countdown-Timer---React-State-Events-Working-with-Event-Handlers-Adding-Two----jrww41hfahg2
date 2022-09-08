@@ -1,34 +1,42 @@
 import React, { Component, useState, useEffect } from "react";
 import '../styles/App.css';
+
 const App = () => {
-  const [time, setTime] = useState("")
-  const addTime = (e)=>{
-    const input = parseInt(e.target.value)
-    setTime(input)
-     if(input<=0){
-      setTime(0)
-    }
-  }
-  
-  useEffect(()=>{
-      const interval = setInterval(()=>{
-      setTime(time-1)
-      if(time<=0){
-        setTime(0)
-      }
-    }, 1000)
-    return()=>clearInterval(interval)
-  })
   // write your code here 
+  const [time, setTime] = useState("");
+
+  const handleEvent = (event) => {
+    if(event.keyCode === 13) {
+      clearInterval(timerId);
+      if(isNaN(event.target.value)){
+        setTime(0);
+        return;
+      }
+
+      setTime(parseInt(event.target.value));
+    }
+  };
+
+  const tick = () => {
+    clearInterval(timerId);
+    if(time <= 0) return;
+    setTime(time - 1);
+  }
+
+  let timerId = setInterval(tick, 1000);
+
   return (
     <div className="wrapper">
       <div id="whole-center">
         <h1>
-          Reverse countdown for<input id="timeCount" onChange={addTime} /> sec.
+          Reverse countdown for
+          <input id="timeCount" onKeyDown={handleEvent} /> sec.
         </h1>
       </div>
-      <div id="current-time">{time}</div>  
+      <div id="current-time">{time}</div>
     </div>
   )
 }
+
+
 export default App;
